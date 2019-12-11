@@ -1,4 +1,4 @@
-FROM nvidia/cuda:9.0-cudnn7-devel-ubuntu16.04
+FROM nvidia/cuda:10.1-devel-ubuntu18.04
 ENV LANG C.UTF-8
 
 ###########
@@ -13,7 +13,6 @@ RUN apt-get update --fix-missing && apt-get install -y \
     cmake \
     imagemagick
 
-# downgrade to cudnn 7.0 (tensorflow 1.5 binary doesn't work with 7.1)
 RUN apt-get update && apt-get install -y --allow-change-held-packages --allow-downgrades --no-install-recommends \
     bzip2 \
     g++ \
@@ -23,8 +22,6 @@ RUN apt-get update && apt-get install -y --allow-change-held-packages --allow-do
     libhdf5-dev \
     openmpi-bin \
     wget \
-    libcudnn7=7.0.5.15-1+cuda9.0 \
-    libcudnn7-dev=7.0.5.15-1+cuda9.0 \
     && \
     rm -rf /var/lib/apt/lists/*
 
